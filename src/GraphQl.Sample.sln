@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31005.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraphQL.Sample.Domain", "GraphQL.Sample.Domain\GraphQL.Sample.Domain.csproj", "{834762F8-AEFC-4341-A749-A239501BB7BC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraphQL.Sample.Infrastructure.Data.Ef", "GraphQL.Sample.Infrastructure.Data.Ef\GraphQL.Sample.Infrastructure.Data.Ef.csproj", "{29B39F87-7BAD-42EA-B6FB-E31E4A6A16E3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraphQL.Sample.Service", "GraphQL.Sample.Service\GraphQL.Sample.Service.csproj", "{CE4C5563-99AC-40CB-8F64-0AF04B0C9F87}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraphQL.DotNet.Sample", "GraphQL.DotNet.Sample\GraphQL.DotNet.Sample.csproj", "{BA590E88-1F16-47A1-89A2-C9BBAF7B5E50}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraphQL.HotChocolate.Sample", "GraphQL.HotChocolate.Sample\GraphQL.HotChocolate.Sample.csproj", "{BC053185-6C8B-42ED-85A4-A18CEB13D8D5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{834762F8-AEFC-4341-A749-A239501BB7BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{834762F8-AEFC-4341-A749-A239501BB7BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{834762F8-AEFC-4341-A749-A239501BB7BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{834762F8-AEFC-4341-A749-A239501BB7BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29B39F87-7BAD-42EA-B6FB-E31E4A6A16E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29B39F87-7BAD-42EA-B6FB-E31E4A6A16E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29B39F87-7BAD-42EA-B6FB-E31E4A6A16E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29B39F87-7BAD-42EA-B6FB-E31E4A6A16E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE4C5563-99AC-40CB-8F64-0AF04B0C9F87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE4C5563-99AC-40CB-8F64-0AF04B0C9F87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE4C5563-99AC-40CB-8F64-0AF04B0C9F87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE4C5563-99AC-40CB-8F64-0AF04B0C9F87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA590E88-1F16-47A1-89A2-C9BBAF7B5E50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA590E88-1F16-47A1-89A2-C9BBAF7B5E50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA590E88-1F16-47A1-89A2-C9BBAF7B5E50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA590E88-1F16-47A1-89A2-C9BBAF7B5E50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC053185-6C8B-42ED-85A4-A18CEB13D8D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC053185-6C8B-42ED-85A4-A18CEB13D8D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC053185-6C8B-42ED-85A4-A18CEB13D8D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC053185-6C8B-42ED-85A4-A18CEB13D8D5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2A88F48D-3C7B-4BDA-B844-6E11A10E5C7E}
+	EndGlobalSection
+EndGlobal
