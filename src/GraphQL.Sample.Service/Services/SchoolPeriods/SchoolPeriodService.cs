@@ -16,6 +16,11 @@ namespace GraphQL.Sample.Service.Services.SchoolPeriods
             _schoolPeriodRepository = schoolperiodrepository;
         }
 
+        public async Task<SchoolPeriod> GetSchoolPeriodById(int schoolPeriodId)
+        {
+            return await _schoolPeriodRepository.GetElementAsync(sp => sp.SchoolPeriodId == schoolPeriodId);
+        }
+
         public async Task<IEnumerable<SchoolPeriod>> GetSchoolPeriodsByPeriods(IEnumerable<string> periods)
         {
             return await _schoolPeriodRepository.GetListAsync(sp => periods.Any(p => p == sp.Period));

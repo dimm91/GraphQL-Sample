@@ -61,6 +61,8 @@ namespace GraphQL.HotChocolate.Sample
                 .AddType<CourseType>()
                 .AddType<SchoolPeriodCourseType>()
                 .AddType<SchoolPeriodType>()
+                .AddType<CourseStudentType>()
+                .AddType<CourseTeacherType>()
                 .AddType<DepartmentType>();
             #endregion
 

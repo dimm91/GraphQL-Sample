@@ -15,9 +15,22 @@ namespace GraphQL.Sample.Service.Services.SchoolPeriodCourses
         {
             _schoolPeriodCourseRepository = schoolPeriodCourseRepository;
         }
-        public async Task<IEnumerable<SchoolPeriodCourse>> GetScholPeriodCoursesBySchoolPeriodIds(IEnumerable<int> schoolPeriodIds)
+
+        public async Task<SchoolPeriodCourse> GetSchoolPeriodCoursesById(int schoolPeriodCourseId)
+        {
+            return await _schoolPeriodCourseRepository.GetElementAsync(spc => spc.SchoolPeriodCourseId == schoolPeriodCourseId);
+        }
+
+        public async Task<IEnumerable<SchoolPeriodCourse>> GetSchoolPeriodCoursesBySchoolPeriodIds(IEnumerable<int> schoolPeriodIds)
         {
             return await _schoolPeriodCourseRepository.GetListAsync(x => schoolPeriodIds.Any(a => a == x.SchoolPeriodId));
+        }
+
+        public async Task<SchoolPeriodCourse> InsertSchoolPeriodCourse(int schoolPeriodId, int courseId, int credits)
+        {
+            var schoolPeriodCourse = new SchoolPeriodCourse(schoolPeriodId, courseId, credits);
+            await _schoolPeriodCourseRepository.CreateAsync(schoolPeriodCourse);
+            return schoolPeriodCourse;
         }
     }
 }

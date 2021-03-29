@@ -19,7 +19,7 @@ namespace GraphQL.HotChocolate.Sample.GraphQL.DataLoaders
         }
         protected override async Task<IReadOnlyDictionary<int, List<SchoolPeriodCourse>>> LoadBatchAsync(IReadOnlyList<int> keys, CancellationToken cancellationToken)
         {
-            var schoolPeriodCourses = await _schoolPeriodCourseService.GetScholPeriodCoursesBySchoolPeriodIds(keys);
+            var schoolPeriodCourses = await _schoolPeriodCourseService.GetSchoolPeriodCoursesBySchoolPeriodIds(keys);
 
             return schoolPeriodCourses.GroupBy(sdp => sdp.SchoolPeriodId)
                 .ToDictionary(g => g.Key, g => g.ToList());

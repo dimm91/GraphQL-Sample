@@ -31,7 +31,7 @@ namespace GraphQL.DotNet.Sample.GraphQL.Types
             {
                 var loader = accessor.Context.GetOrAddBatchLoader<int, List<SchoolPeriodCourse>>("GetSchoolPeriodCoursesBySchooPeriodlId", async x =>
                 {
-                    var schoolPeriods = await schoolPeriodCourseService.GetScholPeriodCoursesBySchoolPeriodIds(x);
+                    var schoolPeriods = await schoolPeriodCourseService.GetSchoolPeriodCoursesBySchoolPeriodIds(x);
                     return schoolPeriods.GroupBy(x => x.SchoolPeriodId).ToDictionary(x => x.Key, x => x.ToList());
                 });
 

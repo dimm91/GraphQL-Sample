@@ -6,9 +6,12 @@ namespace GraphQL.Sample.Domain.Models
 {
     public class SchoolPeriodCourse
     {
-        public SchoolPeriodCourse(int schoolPeriodCourseId, int schoolPeriodId, int courseId, int credits)
+        public SchoolPeriodCourse(int schoolPeriodCourseId, int schoolPeriodId, int courseId, int credits) : this(schoolPeriodId, courseId, credits)
         {
             SchoolPeriodCourseId = schoolPeriodCourseId;
+        }
+        public SchoolPeriodCourse(int schoolPeriodId, int courseId, int credits)
+        {
             SchoolPeriodId = schoolPeriodId;
             CourseId = courseId;
             Credits = credits;
