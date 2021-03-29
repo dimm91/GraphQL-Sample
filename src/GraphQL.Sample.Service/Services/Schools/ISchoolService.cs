@@ -10,5 +10,6 @@ namespace GraphQL.Sample.Service.Services.Schools
     {
         Task<IEnumerable<School>> GetSchools();
         Task<School> InsertSchool(string name, string countryCode, string address);
+        Task<School> GetSchoolById(int schoolId);
     }
 }

@@ -15,6 +15,12 @@ namespace GraphQL.Sample.Service.Services.Persons
         {
             _personRepository = personRepository;
         }
+
+        public async Task<Person> GetPersonById(int personId)
+        {
+            return await _personRepository.GetElementAsync(x => x.PersonId == personId && x.PersonType == PersonType.Administrator);
+        }
+
         public async Task<IEnumerable<Person>> GetPersons(IEnumerable<int> personIds)
         {
             return await _personRepository.GetListAsync(x => personIds.Any(p => p == x.PersonId));

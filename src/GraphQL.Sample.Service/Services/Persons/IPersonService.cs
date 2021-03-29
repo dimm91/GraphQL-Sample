@@ -10,5 +10,6 @@ namespace GraphQL.Sample.Service.Services.Persons
     {
         Task<IEnumerable<Person>> GetPersons(IEnumerable<int> personIds);
         Task<IEnumerable<Person>> GetPersonsBytype(PersonType personType);
+        Task<Person> GetPersonById(int personId);
     }
 }

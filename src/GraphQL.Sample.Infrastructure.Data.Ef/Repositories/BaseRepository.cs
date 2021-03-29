@@ -11,7 +11,7 @@ namespace GraphQL.Sample.Infrastructure.Data.Ef.Repositories
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : class
     {
-        protected SchoolDbContext _SchoolDbContext;        
+        protected SchoolDbContext _SchoolDbContext;
         private readonly IDbContextFactory<SchoolDbContext> _contextFactory;
 
         public BaseRepository(IDbContextFactory<SchoolDbContext> contextFactory)
@@ -24,7 +24,7 @@ namespace GraphQL.Sample.Infrastructure.Data.Ef.Repositories
             {
                 await schoolDbContext.Set<T>().AddAsync(model);
                 await schoolDbContext.SaveChangesAsync();
-            }            
+            }
         }
 
         public async Task<List<T>> GetListAsync(Expression<Func<T, bool>> wherePredicate)
@@ -36,6 +36,12 @@ namespace GraphQL.Sample.Infrastructure.Data.Ef.Repositories
         public Task UpdateAsync(T model)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<T> GetElementAsync(Expression<Func<T, bool>> predicate)
+        {
+            using var schoolDbContext = _contextFactory.CreateDbContext();
+            return await schoolDbContext.Set<T>().FirstOrDefaultAsync(predicate);
         }
     }
 }

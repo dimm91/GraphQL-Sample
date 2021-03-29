@@ -11,5 +11,6 @@ namespace GraphQL.Sample.Domain.Interfaces
         Task CreateAsync(T model);
         Task UpdateAsync(T model);
         Task<List<T>> GetListAsync(Expression<Func<T, bool>> wherePredicate);
+        Task<T> GetElementAsync(Expression<Func<T, bool>> predicate);
     }
 }

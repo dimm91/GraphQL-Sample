@@ -25,5 +25,13 @@ namespace GraphQL.Sample.Service.Services.Departments
         {
             return await _departmentRepository.GetListAsync(x => schoolIds.Any(y => y == x.SchoolId));
         }
+
+        public async Task<Department> InsertDepartment(string name, int schoolId, int administratorId)
+        {
+            var department = new Department(name, administratorId, schoolId);
+            await _departmentRepository.CreateAsync(department);
+            return department;
+
+        }
     }
 }

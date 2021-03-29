@@ -50,6 +50,7 @@ namespace GraphQL.HotChocolate.Sample
                     .AddTypeExtension<DepartmentQuery>()
                  .AddMutationType(d => d.Name("Mutation"))
                     .AddTypeExtension<SchoolMutation>()
+                    .AddTypeExtension<DepartmentMutation>()
                 .AddDataLoader<DepartmentBySchoolIdDataLoader>()
                 .AddDataLoader<DepartmentByIdDataLoader>()
                 .AddDataLoader<PersonByIdDataLoader>()

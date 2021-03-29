@@ -15,6 +15,12 @@ namespace GraphQL.Sample.Service.Services.Schools
         {
             _schoolRepository = schoolRepository;
         }
+
+        public async Task<School> GetSchoolById(int schoolId)
+        {
+            return await _schoolRepository.GetElementAsync(s => s.Id == schoolId);
+        }
+
         public async Task<IEnumerable<School>> GetSchools()
         {
             return await _schoolRepository.GetListAsync(_ => true);

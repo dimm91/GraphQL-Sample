@@ -6,9 +6,12 @@ namespace GraphQL.Sample.Domain.Models
 {
     public class Department
     {
-        public Department(int departmentId, string name, int administratorId, int schoolId)
+        public Department(int departmentId, string name, int administratorId, int schoolId) : this(name, administratorId, schoolId)
         {
             DepartmentId = departmentId;
+        }
+        public Department(string name, int administratorId, int schoolId)
+        {
             Name = name;
             AdministratorId = administratorId;
             SchoolId = schoolId;
