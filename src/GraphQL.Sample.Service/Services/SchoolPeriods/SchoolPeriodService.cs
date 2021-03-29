@@ -10,20 +10,27 @@ namespace GraphQL.Sample.Service.Services.SchoolPeriods
 {
     public class SchoolPeriodService : ISchoolPeriodService
     {
-        private readonly ISchoolPeriodRepository _schoolperiodrepository;
+        private readonly ISchoolPeriodRepository _schoolPeriodRepository;
         public SchoolPeriodService(ISchoolPeriodRepository schoolperiodrepository)
         {
-            _schoolperiodrepository = schoolperiodrepository;
+            _schoolPeriodRepository = schoolperiodrepository;
         }
 
         public async Task<IEnumerable<SchoolPeriod>> GetSchoolPeriodsByPeriods(IEnumerable<string> periods)
         {
-            return await _schoolperiodrepository.GetListAsync(sp => periods.Any(p => p == sp.Period));
+            return await _schoolPeriodRepository.GetListAsync(sp => periods.Any(p => p == sp.Period));
         }
 
         public async Task<IEnumerable<SchoolPeriod>> GetSchoolPeriodsBySchoolIds(IEnumerable<int> schoolIds)
         {
-            return await _schoolperiodrepository.GetListAsync(sp => schoolIds.Any(p => p == sp.SchoolId));
+            return await _schoolPeriodRepository.GetListAsync(sp => schoolIds.Any(p => p == sp.SchoolId));
+        }
+
+        public async Task<SchoolPeriod> InsertSchoolPeriod(int schoolId, string period)
+        {
+            var schoolPeriod = new SchoolPeriod(schoolId, period);
+            await _schoolPeriodRepository.CreateAsync(schoolPeriod);
+            return schoolPeriod;
         }
     }
 }

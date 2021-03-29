@@ -10,5 +10,6 @@ namespace GraphQL.Sample.Service.Services.SchoolPeriods
     {
         Task<IEnumerable<SchoolPeriod>> GetSchoolPeriodsBySchoolIds(IEnumerable<int> schoolIds);
         Task<IEnumerable<SchoolPeriod>> GetSchoolPeriodsByPeriods(IEnumerable<string> periods);
+        Task<SchoolPeriod> InsertSchoolPeriod(int schoolId, string period);
     }
 }

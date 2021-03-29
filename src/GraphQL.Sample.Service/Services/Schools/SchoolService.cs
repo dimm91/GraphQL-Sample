@@ -32,5 +32,7 @@ namespace GraphQL.Sample.Service.Services.Schools
             await _schoolRepository.CreateAsync(school);
             return school;
         }
+
+      
     }
 }

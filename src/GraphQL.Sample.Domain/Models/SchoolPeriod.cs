@@ -7,9 +7,12 @@ namespace GraphQL.Sample.Domain.Models
 {
     public class SchoolPeriod
     {
-        public SchoolPeriod(int schoolPeriodId, int schoolId, string period)
+        public SchoolPeriod(int schoolPeriodId, int schoolId, string period) : this(schoolId, period)
         {
             SchoolPeriodId = schoolPeriodId;
+        }
+        public SchoolPeriod(int schoolId, string period)
+        {
             SchoolId = schoolId;
             Period = period;
         }
