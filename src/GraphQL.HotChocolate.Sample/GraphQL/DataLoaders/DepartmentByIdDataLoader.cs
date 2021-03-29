@@ -20,7 +20,7 @@ namespace GraphQL.HotChocolate.Sample.GraphQL.DataLoaders
         }
         protected override async Task<IReadOnlyDictionary<int, Department>> LoadBatchAsync(IReadOnlyList<int> keys, CancellationToken cancellationToken)
         {
-            var departments = await _departmentService.GetDepartmentsBySchoolId(keys);
+            var departments = await _departmentService.GetDepartmentsByIds(keys);
             return departments.ToDictionary(d => d.DepartmentId, g => g);
         }
     }

@@ -16,9 +16,14 @@ namespace GraphQL.Sample.Service.Services.Persons
             _personRepository = personRepository;
         }
 
-        public async Task<Person> GetPersonById(int personId)
+        public async Task<Person> GetPersonByEmail(string email)
         {
-            return await _personRepository.GetElementAsync(x => x.PersonId == personId && x.PersonType == PersonType.Administrator);
+            return await _personRepository.GetElementAsync(x => x.Email == email);
+        }
+
+        public async Task<Person> GetPersonById(int personId, PersonType personType)
+        {
+            return await _personRepository.GetElementAsync(x => x.PersonId == personId && x.PersonType == personType);
         }
 
         public async Task<IEnumerable<Person>> GetPersons(IEnumerable<int> personIds)
@@ -29,6 +34,13 @@ namespace GraphQL.Sample.Service.Services.Persons
         public async Task<IEnumerable<Person>> GetPersonsBytype(PersonType personType)
         {
             return await _personRepository.GetListAsync(x => x.PersonType == personType);
+        }
+
+        public async Task<Person> InsertPerson(string name, string lastname, string email, PersonType PersonType)
+        {
+            var person = new Person(name, lastname, email, PersonType);
+            await _personRepository.CreateAsync(person);
+            return person;
         }
     }
 }

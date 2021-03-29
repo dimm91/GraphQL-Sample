@@ -23,5 +23,12 @@ namespace GraphQL.Sample.Service.Services.Courses
         {
             return await _courseRepository.GetListAsync(c => courseIds.Any(ci => ci == c.Id));
         }
+
+        public async Task<Course> InsertCourse(string name, int departmentId)
+        {
+            var course = new Course(name, departmentId);
+            await _courseRepository.CreateAsync(course);
+            return course;
+        }
     }
 }

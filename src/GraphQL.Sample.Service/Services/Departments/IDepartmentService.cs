@@ -10,6 +10,7 @@ namespace GraphQL.Sample.Service.Services.Departments
     {
         Task<IEnumerable<Department>> GetDepartmentsBySchoolId(IEnumerable<int> schoolIds);
         Task<IEnumerable<Department>> GetDepartmentsByIds(IEnumerable<int> departmentIds);
+        Task<Department> GetDepartmentById(int departmetnId);
         Task<Department> InsertDepartment(string name, int schoolId, int administratorId);
     }
 }

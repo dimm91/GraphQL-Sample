@@ -6,15 +6,19 @@ namespace GraphQL.Sample.Domain.Models
 {
     public class Person
     {
-        public Person(int personId, string name, string lastname, string email, PersonType personType)
+        public Person(int personId, string name, string lastname, string email, PersonType personType) : this(name, lastname, email, personType)
         {
             PersonId = personId;
+        }
+
+        public Person(string name, string lastname, string email, PersonType personType)
+        {
             Name = name;
             Lastname = lastname;
             Email = email;
             PersonType = personType;
-
         }
+
         public int PersonId { get; set; }
         public string Name { get; set; }
         public string Lastname { get; set; }

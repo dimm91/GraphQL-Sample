@@ -27,7 +27,7 @@ namespace GraphQL.HotChocolate.Sample.GraphQL.Mutations
                 throw new ArgumentNullException("The school does not exist");
             }
 
-            var administrator = await personService.GetPersonById(input.AdministratorId);
+            var administrator = await personService.GetPersonById(input.AdministratorId, PersonType.Administrator);
             if (administrator == null)
             {
                 throw new ArgumentNullException("The adminastrator does not exist or is not an administrator");

@@ -9,6 +9,7 @@ namespace GraphQL.Sample.Service.Services.Courses
     public interface ICourseService
     {
         Task<IEnumerable<Course>> GetCourses(IEnumerable<int> courseIds);
+        Task<Course> InsertCourse(string name, int departmentId);
 
     }
 }
