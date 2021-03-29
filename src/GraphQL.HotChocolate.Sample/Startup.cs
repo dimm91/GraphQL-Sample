@@ -1,6 +1,7 @@
 using GraphQL.HotChocolate.Sample.GraphQL.DataLoaders;
 using GraphQL.HotChocolate.Sample.GraphQL.Mutations;
 using GraphQL.HotChocolate.Sample.GraphQL.Queries;
+using GraphQL.HotChocolate.Sample.GraphQL.Subscriptions;
 using GraphQL.HotChocolate.Sample.GraphQL.Types;
 using GraphQL.Sample.Domain.Interfaces;
 using GraphQL.Sample.Infrastructure.Data.Ef;
@@ -15,17 +16,11 @@ using GraphQL.Sample.Service.Services.SchoolPeriods;
 using GraphQL.Sample.Service.Services.Schools;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace GraphQL.HotChocolate.Sample
 {
@@ -53,6 +48,8 @@ namespace GraphQL.HotChocolate.Sample
                     .AddTypeExtension<DepartmentMutation>()
                     .AddTypeExtension<PersonMutation>()
                     .AddTypeExtension<CourseMutation>()
+                .AddSubscriptionType(d => d.Name("Subscription"))
+                    .AddTypeExtension<SampleSubscription>()
                 .AddDataLoader<DepartmentBySchoolIdDataLoader>()
                 .AddDataLoader<DepartmentByIdDataLoader>()
                 .AddDataLoader<PersonByIdDataLoader>()
@@ -64,6 +61,9 @@ namespace GraphQL.HotChocolate.Sample
                 .AddType<CourseStudentType>()
                 .AddType<CourseTeacherType>()
                 .AddType<DepartmentType>();
+
+            // To use subscription, we need to register it.
+            services.AddInMemorySubscriptions();
             #endregion
 
             #region Services
@@ -110,9 +110,12 @@ namespace GraphQL.HotChocolate.Sample
             app.UseRouting();
 
             app.UseAuthorization();
+
             // use Voyager middleware at default path /ui/voyager with default options
             app.UseGraphQLVoyager();
 
+            // Configure our ASP.NET Core pipeline to use websocket
+            app.UseWebSockets();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGraphQL();
