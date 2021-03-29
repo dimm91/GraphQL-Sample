@@ -1,4 +1,5 @@
-﻿using GraphQL.DotNet.Sample.GraphQL.Types;
+﻿using GraphQL.DotNet.Sample.GraphQL.InputTypes;
+using GraphQL.DotNet.Sample.GraphQL.Types;
 using GraphQL.Sample.Domain.Models;
 using GraphQL.Sample.Service.Services.Schools;
 using GraphQL.Types;
@@ -9,34 +10,45 @@ using System.Threading.Tasks;
 
 namespace GraphQL.DotNet.Sample.GraphQL.Mutations
 {
-    partial class RootMutation
+    internal partial class RootMutation
     {
-        /// <summary>
-        /// Remember: The 'AddSchoolInputType' the model exposed to the outside
-        /// While the 'AddSchoolInput' is the model you can use in the code. 
-        /// Since internally this will the values comming from 'AddSchoolInputType' will be parsed to 'AddSchoolInput'
-        /// </summary>
-        public class AddSchoolInputType : InputObjectGraphType<AddSchoolInput>
-        {
-            public AddSchoolInputType()
-            {
-                Name = "AddSchoolInput";
-                Field(x => x.Name);
-                Field(x => x.Address);
-                Field(x => x.CountryCode);
-            }
-        }
-        public record AddSchoolInput(string Name, string Address, string CountryCode);
         public void SetSchoolMutations()
         {
             Field<SchoolGraphType>(
-              "AddSchool",
-                arguments: new QueryArguments(new QueryArgument<NonNullGraphType<AddSchoolInputType>> { Name = "input" }),
-              resolve: c => AddSchoolAsync(_schoolService, c.GetArgument<AddSchoolInput>("input")));
+              "AddSchool", arguments: new QueryArguments(new QueryArgument<NonNullGraphType<AddSchoolInputType>> { Name = "input" }),
+              resolve: c => AddSchoolAsync(c.GetArgument<AddSchoolInput>("input")));
+
+            Field<SchoolPeriodGraphType>(
+              "AddSchoolPeriod", arguments: new QueryArguments(new QueryArgument<NonNullGraphType<AddSchoolPeriodInputType>> { Name = "input" }),
+              resolve: c => AddSchoolPeriodAsync(c.GetArgument<AddSchoolPeriodInput>("input")));
+
+            Field<SchoolPeriodCourseGraphType>(
+              "AddSchoolPeriodCourse", arguments: new QueryArguments(new QueryArgument<NonNullGraphType<AddSchoolPeriodCourseInputType>> { Name = "input" }),
+              resolve: c => AddSchoolPeriodCourseAsync(c.GetArgument<AddSchoolPeriodCourseInput>("input")));
         }
-        private async Task<School> AddSchoolAsync(ISchoolService schoolService, AddSchoolInput addSchoolInput)
+        private async Task<School> AddSchoolAsync(AddSchoolInput addSchoolInput)
         {
-            return await schoolService.InsertSchool(addSchoolInput.Name, addSchoolInput.CountryCode, addSchoolInput.Address);
+            return await _schoolService.InsertSchool(addSchoolInput.Name, addSchoolInput.CountryCode, addSchoolInput.Address);
+        }
+        private async Task<SchoolPeriod> AddSchoolPeriodAsync(AddSchoolPeriodInput addSchoolInput)
+        {
+            var school = await _schoolService.GetSchoolById(addSchoolInput.SchoolId);
+            if (school == null)
+            {
+                throw new Exception("There is no school with that id");
+            }
+
+            return await _schoolPeriodService.InsertSchoolPeriod(addSchoolInput.SchoolId, addSchoolInput.Period);
+        }
+        private async Task<SchoolPeriodCourse> AddSchoolPeriodCourseAsync(AddSchoolPeriodCourseInput addSchoolInput)
+        {
+            var schoolPeriod = await _schoolPeriodService.GetSchoolPeriodById(addSchoolInput.SchoolPeriodId);
+            if (schoolPeriod == null)
+            {
+                throw new Exception("There is no 'schoolPeriod' with that id");
+            }
+            
+            return await _schoolPeriodCourseService.InsertSchoolPeriodCourse(addSchoolInput.SchoolPeriodId, addSchoolInput.CourseId, addSchoolInput.Credits);
         }
     }
 }

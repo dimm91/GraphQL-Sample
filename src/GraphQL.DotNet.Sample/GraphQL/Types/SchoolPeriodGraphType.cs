@@ -16,6 +16,7 @@ namespace GraphQL.DotNet.Sample.GraphQL.Types
         public SchoolPeriodGraphType(IDataLoaderContextAccessor accessor, ISchoolPeriodCourseService schoolPeriodCourseService)
         {
             Name = "SchoolPeriod";
+            Field(x => x.SchoolPeriodId);
             Field(x => x.Period);
             Field(x => x.SchoolId);
 

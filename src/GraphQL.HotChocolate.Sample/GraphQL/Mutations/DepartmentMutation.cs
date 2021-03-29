@@ -30,7 +30,7 @@ namespace GraphQL.HotChocolate.Sample.GraphQL.Mutations
             var administrator = await personService.GetPersonById(input.AdministratorId, PersonType.Administrator);
             if (administrator == null)
             {
-                throw new ArgumentNullException("The adminastrator does not exist or is not an administrator");
+                throw new ArgumentNullException("The administrator does not exist or is not an administrator");
             }
 
             return await departmentService.InsertDepartment(input.Name, input.SchoolId, input.AdministratorId);

@@ -19,6 +19,10 @@ namespace GraphQL.Sample.Service.Services.CourseStudents
         {
             return await _courseStudentsRepository.GetListAsync(x => schoolPeriodCourseIds.Any(y => y == x.SchoolPeriodCourseId)); ;
         }
+        public async Task<IEnumerable<CourseStudent>> GetCourseStudentsByStudentId(IEnumerable<int> studentIds)
+        {
+            return await _courseStudentsRepository.GetListAsync(x => studentIds.Any(y => y == x.StudentId));
+        }
 
         public async Task<CourseStudent> InsertCourseStudent(int studentId, int schoolPeriodCourseId)
         {

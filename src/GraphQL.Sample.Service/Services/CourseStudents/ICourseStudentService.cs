@@ -10,5 +10,6 @@ namespace GraphQL.Sample.Service.Services.CourseStudents
     {
         Task<IEnumerable<CourseStudent>> GetCourseStudentsByPeriodCourseId(IEnumerable<int> schoolPeriodCourseIds);
         Task<CourseStudent> InsertCourseStudent(int studentId, int schoolPeriodCourseId);
+        Task<IEnumerable<CourseStudent>> GetCourseStudentsByStudentId(IEnumerable<int> studentIds);
     }
 }
