@@ -20,6 +20,7 @@ namespace GraphQL.DotNet.Sample.GraphQL.Types
             Field(x => x.Id, type: typeof(IdGraphType)).Description("School Id");
             Field(x => x.Name).Description("Schools Name");
             Field(x => x.CountryCode).Description("Country code of the school");
+            Field(x => x.Address).Description("Address of the school");
             Field<ListGraphType<DepartmentGraphType>>()
                 .Name("Departments")
                 .Description("Department from the school")

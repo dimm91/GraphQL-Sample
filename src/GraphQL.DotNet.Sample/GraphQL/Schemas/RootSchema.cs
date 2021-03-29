@@ -1,4 +1,5 @@
-﻿using GraphQL.DotNet.Sample.GraphQL.Queries;
+﻿using GraphQL.DotNet.Sample.GraphQL.Mutations;
+using GraphQL.DotNet.Sample.GraphQL.Queries;
 using GraphQL.Types;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -13,6 +14,7 @@ namespace GraphQL.DotNet.Sample.GraphQL.Schemas
         public RootSchema(IServiceProvider serviceProvider) : base(serviceProvider)
         {
             Query = serviceProvider.GetRequiredService<RootQuery>();
+            Mutation = serviceProvider.GetRequiredService<RootMutation>();
         }
     }
 }

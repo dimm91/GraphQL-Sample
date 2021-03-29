@@ -21,6 +21,7 @@ using Microsoft.Extensions.Logging;
 using GraphQL.Sample.Service.Services.Persons;
 using GraphQL.Sample.Service.Services.CourseStudents;
 using GraphQL.Sample.Service.Services.CourseTeachers;
+using GraphQL.DotNet.Sample.GraphQL.Mutations;
 
 namespace GraphQL.DotNet.Sample
 {
@@ -38,8 +39,9 @@ namespace GraphQL.DotNet.Sample
         {
             #region GraphQL
             services.AddScoped<RootQuery>();
+            services.AddScoped<RootMutation>();
             services.AddScoped<ISchema, RootSchema>();
-
+            
             services.AddGraphQL(options => options.EnableMetrics = false)
                 .AddErrorInfoProvider(options => options.ExposeExceptionStackTrace = true)
                 .AddNewtonsoftJson()
