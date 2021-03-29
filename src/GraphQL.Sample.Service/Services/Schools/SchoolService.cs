@@ -19,5 +19,12 @@ namespace GraphQL.Sample.Service.Services.Schools
         {
             return await _schoolRepository.GetListAsync(_ => true);
         }
+
+        public async Task<School> InsertSchool(string name, string countryCode, string address)
+        {
+            var school = new School(name, countryCode, address);
+            await _schoolRepository.CreateAsync(school);
+            return school;
+        }
     }
 }

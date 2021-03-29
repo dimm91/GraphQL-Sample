@@ -11,30 +11,26 @@ namespace GraphQL.Sample.Infrastructure.Data.Ef.Repositories
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : class
     {
-        protected SchoolDbContext _SchoolDbContext;
-        //public BaseRepository(SchoolDbContext schoolDbContext = null)
-        //{
-        //    _SchoolDbContext = schoolDbContext;
-        //}
+        protected SchoolDbContext _SchoolDbContext;        
         private readonly IDbContextFactory<SchoolDbContext> _contextFactory;
-        
+
         public BaseRepository(IDbContextFactory<SchoolDbContext> contextFactory)
         {
             _contextFactory = contextFactory;
         }
-        public Task<int> CreateAsync(T model)
+        public async Task CreateAsync(T model)
         {
-            throw new NotImplementedException();
+            using (var schoolDbContext = _contextFactory.CreateDbContext())
+            {
+                await schoolDbContext.Set<T>().AddAsync(model);
+                await schoolDbContext.SaveChangesAsync();
+            }            
         }
 
         public async Task<List<T>> GetListAsync(Expression<Func<T, bool>> wherePredicate)
         {
-            using (var schoolDbContext = _contextFactory.CreateDbContext())
-            {
-                return await schoolDbContext.Set<T>().Where(wherePredicate).AsQueryable().ToListAsync();
-            }
-            //return default;
-            //return await _SchoolDbContext.Set<T>().Where(wherePredicate).AsQueryable().ToListAsync();
+            using var schoolDbContext = _contextFactory.CreateDbContext();
+            return await schoolDbContext.Set<T>().Where(wherePredicate).AsQueryable().ToListAsync();
         }
 
         public Task UpdateAsync(T model)

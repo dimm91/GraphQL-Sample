@@ -1,4 +1,5 @@
 using GraphQL.HotChocolate.Sample.GraphQL.DataLoaders;
+using GraphQL.HotChocolate.Sample.GraphQL.Mutations;
 using GraphQL.HotChocolate.Sample.GraphQL.Queries;
 using GraphQL.HotChocolate.Sample.GraphQL.Types;
 using GraphQL.Sample.Domain.Interfaces;
@@ -47,11 +48,12 @@ namespace GraphQL.HotChocolate.Sample
                     .AddTypeExtension<PersonQuery>()
                     .AddTypeExtension<CourseQuery>()
                     .AddTypeExtension<DepartmentQuery>()
-
-                    .AddDataLoader<DepartmentBySchoolIdDataLoader>()
-                    .AddDataLoader<DepartmentByIdDataLoader>()
-                    .AddDataLoader<PersonByIdDataLoader>()
-                    .AddDataLoader<StudenIdsByPeriodCourseIdDataLoader>()
+                 .AddMutationType(d => d.Name("Mutation"))
+                    .AddTypeExtension<SchoolMutation>()
+                .AddDataLoader<DepartmentBySchoolIdDataLoader>()
+                .AddDataLoader<DepartmentByIdDataLoader>()
+                .AddDataLoader<PersonByIdDataLoader>()
+                .AddDataLoader<StudenIdsByPeriodCourseIdDataLoader>()
                 .AddType<SchoolType>()
                 .AddType<CourseType>()
                 .AddType<SchoolPeriodCourseType>()

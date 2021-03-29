@@ -7,13 +7,15 @@ namespace GraphQL.Sample.Domain.Models
 {
     public class School
     {
-        public School(int id, string name, string countryCode, string address)
+        public School(int id, string name, string countryCode, string address) : this(name, countryCode, address)
         {
             Id = id;
+        }
+        public School(string name, string countryCode, string address)
+        {
             Name = name;
             CountryCode = countryCode;
             Address = address;
-
         }
         [Key]
         public int Id { get; set; }

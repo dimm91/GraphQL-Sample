@@ -8,10 +8,7 @@ namespace GraphQL.Sample.Service.Services.Schools
 {
     public interface ISchoolService
     {
-        //IEnumerable<User> GetUsers();
         Task<IEnumerable<School>> GetSchools();
-        //void InsertUser(User user);
-        //void UpdateUser(User user);
-        //void DeleteUser(long id);
+        Task<School> InsertSchool(string name, string countryCode, string address);
     }
 }
